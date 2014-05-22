@@ -41,7 +41,6 @@ public class UserManager {
 	 * @return 用户信息
 	 */
 	public User getByLoginName_Cache(String loginName) {
-		System.out.println("getByLoginName_Cache@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 		List<User> _userList = getAllUser_Cache();
 
 		for (User user : _userList) {

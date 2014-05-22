@@ -31,8 +31,8 @@
   	<body>
 	    <form action="${sc_ctx}/login" method="post" id="inputForm">
 	    <ul>
-	    	<li>姓　名：<input type="text" name="account" /> </li>
-	    	<li>密　码：<input type="text" name="password" /> </li>
+	    	<li>姓　名：<input type="text" name="loginName" /> </li>
+	    	<li>密　码：<input type="text" name="passWord" /> </li>
 	    	<li><input type="button" id="loginBtn" value="确认" /> </li>
 	    </ul>
 	    </form>

@@ -19,7 +19,6 @@ public class LoginController {
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST, produces = { "application/json;charset=UTF-8" })
 	public String login(User currUser, HttpSession session, HttpServletRequest request) {
-		System.out.println("999999999999999999999");
 		Subject user = SecurityUtils.getSubject();
 		UsernamePasswordToken token = new UsernamePasswordToken(currUser.getLoginName(), currUser.getPassWord());
 		token.setRememberMe(true);
@@ -33,6 +32,11 @@ public class LoginController {
 
 			return "redirect:/" + Constants.PAGE_REQUEST_PREFIX + "/index";
 		}
+	}
+	
+	@RequestMapping(value = "/myspace", method = RequestMethod.POST, produces = { "application/json;charset=UTF-8" })
+	public String login(){
+		return "myspace";
 	}
 
 }

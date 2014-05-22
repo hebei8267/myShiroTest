@@ -262,10 +262,12 @@ public class Menu extends IdEntity {
 	 * @return
 	 */
 	public Menu addSubMenu(Menu subMenu) {
-		if (null == this.subMenuList) {
-			this.subMenuList = new ArrayList<Menu>();
+		if (null != subMenu) {
+			if (null == this.subMenuList) {
+				this.subMenuList = new ArrayList<Menu>();
+			}
+			subMenuList.add(subMenu);
 		}
-		subMenuList.add(subMenu);
 		return this;
 	}
 }

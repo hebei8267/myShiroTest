@@ -1,5 +1,6 @@
 package com.tjhx.entity.security;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -21,9 +22,7 @@ import com.tjhx.entity.IdEntity;
  * 用户
  */
 @Entity
-@Table(name = "T_USER", indexes = { 
-		@Index(columnList = "LOGIN_NAME"),
-		@Index(columnList = "PHONE_NUM"), 
+@Table(name = "T_USER", indexes = { @Index(columnList = "LOGIN_NAME"), @Index(columnList = "PHONE_NUM"),
 		@Index(columnList = "QQ_NUM") })
 public class User extends IdEntity {
 
@@ -320,6 +319,23 @@ public class User extends IdEntity {
 	 */
 	public void setRoles(Set<Role> roles) {
 		this.roles = roles;
+	}
+
+	/**
+	 * 添加用户和角色的关系
+	 * 
+	 * @param role
+	 * @return
+	 */
+	public User addRole(Role role) {
+		if (null != role) {
+			if (null == roles) {
+				this.roles = new HashSet<Role>();
+			}
+			this.roles.add(role);
+		}
+
+		return this;
 	}
 
 	/**

@@ -18,11 +18,9 @@
 	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
 		<property name="securityManager" ref="securityManager" />
 		<property name="loginUrl" value="/sc/login" />
-		<property name="successUrl" value="/system/main" />
 		<property name="filterChainDefinitions">
 			<value>
 				/sc/index = anon
-				/sc/validateCode = anon
            		/sc/** = authc
 			</value>
 		</property>

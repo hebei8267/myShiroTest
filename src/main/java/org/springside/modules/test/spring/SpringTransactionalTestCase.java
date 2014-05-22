@@ -8,7 +8,9 @@ package org.springside.modules.test.spring;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests;
 
 /**
@@ -20,7 +22,9 @@ import org.springframework.test.context.junit4.AbstractTransactionalJUnit4Spring
  * 
  * @author calvin
  */
-@ActiveProfiles(Profiles.UNIT_TEST)
+@ActiveProfiles(Profiles.DEVELOPMENT)
+@ContextConfiguration(locations = { "classpath*:/applicationContext.xml", "classpath*:/applicationContext-memcached.xml" })
+@DirtiesContext
 public abstract class SpringTransactionalTestCase extends AbstractTransactionalJUnit4SpringContextTests {
 
 	protected DataSource dataSource;

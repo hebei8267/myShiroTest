@@ -31,7 +31,6 @@ public class ShiroDbRealm extends AuthorizingRealm {
 	 */
 	@Override
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
-		System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 		SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
 		// 获取当前登录的用户名
 		String loginName = (String) super.getAvailablePrincipal(principals);
@@ -69,7 +68,6 @@ public class ShiroDbRealm extends AuthorizingRealm {
 	 */
 	@Override
 	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authcToken) throws AuthenticationException {
-		System.out.println("????????????????????????????????");
 		UsernamePasswordToken token = (UsernamePasswordToken) authcToken;
 		User user = userManager.getByLoginName_Cache(token.getUsername());
 		if (user != null) {

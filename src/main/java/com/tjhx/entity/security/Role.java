@@ -1,5 +1,6 @@
 package com.tjhx.entity.security;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -35,7 +36,7 @@ public class Role extends IdEntity {
 
 	/** 角色有效性-0:禁用 1:启用 */
 	@Column(name = "VALID_FLG", nullable = false, length = 1)
-	private String valid;
+	private String validFlg;
 
 	/** 备注 */
 	@Column(name = "COMMENT")
@@ -87,8 +88,8 @@ public class Role extends IdEntity {
 	 * 
 	 * @return valid 角色有效性-0:禁用1:启用
 	 */
-	public String getValid() {
-		return valid;
+	public String getValidFlg() {
+		return validFlg;
 	}
 
 	/**
@@ -96,8 +97,8 @@ public class Role extends IdEntity {
 	 * 
 	 * @param valid 角色有效性-0:禁用1:启用
 	 */
-	public void setValid(String valid) {
-		this.valid = valid;
+	public void setValidFlg(String validFlg) {
+		this.validFlg = validFlg;
 	}
 
 	/**
@@ -136,4 +137,20 @@ public class Role extends IdEntity {
 		this.menus = menus;
 	}
 
+	/**
+	 * 添加菜单权限
+	 * 
+	 * @param menu
+	 * @return
+	 */
+	public Role addMenuPmss(Menu menu) {
+		if (null != menu) {
+			if (null == menus) {
+				this.menus = new HashSet<Menu>();
+			}
+			this.menus.add(menu);
+		}
+
+		return this;
+	}
 }
