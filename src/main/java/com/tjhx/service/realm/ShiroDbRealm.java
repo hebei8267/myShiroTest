@@ -38,7 +38,7 @@ public class ShiroDbRealm extends AuthorizingRealm {
 		List<String> roles = new ArrayList<String>();
 		List<String> permissions = new ArrayList<String>();
 
-		User user = userManager.getByLoginName_Cache(loginName);
+		User user = userManager.getByLoginName_InCache(loginName);
 		if (user != null) {
 			if (user.getRoles() != null && user.getRoles().size() > 0) {
 				for (Role role : user.getRoles()) {
@@ -69,7 +69,7 @@ public class ShiroDbRealm extends AuthorizingRealm {
 	@Override
 	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authcToken) throws AuthenticationException {
 		UsernamePasswordToken token = (UsernamePasswordToken) authcToken;
-		User user = userManager.getByLoginName_Cache(token.getUsername());
+		User user = userManager.getByLoginName_InCache(token.getUsername());
 		if (user != null) {
 			return new SimpleAuthenticationInfo(user.getLoginName(), user.getPassWord(), user.getName());
 		} else {
