@@ -11,7 +11,7 @@ public class Constants {
 	// ------------------------------------------------------------------
 
 	/** 用户信息 */
-	public static final String SESSION_USER_INFO = "__SESSION_USER_INFO";
+	public static final String CURRENT_USER_INFO = "__CURRENT_USER_INFO";
 
 	// ------------------------------------------------------------------
 	/** 初始化密码-默认值 */
