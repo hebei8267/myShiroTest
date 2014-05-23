@@ -9,6 +9,14 @@
     <head>
     </head>
     <body>
-        myspace.jsp
+    	<a href="${sc_ctx}/logout">logout</a><br><br><br>
+    
+    
+    	<a href="${sc_ctx}/Link01?search=123">Link01</a><br>
+    	<a href="${sc_ctx}/Link0101">Link0101</a><br>
+    	<a href="${sc_ctx}/Link0102">Link0102</a><br>
+    	<a href="${sc_ctx}/Link0103">Link0103</a><br><br>
+    	<a href="${sc_ctx}/Link02">Link02</a><br>
+    	<a href="${sc_ctx}/Link0201">Link0201</a>
     </body>
 </html>

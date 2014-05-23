@@ -31,7 +31,6 @@ public class LoginController {
 			}
 		}
 		return "redirect:/" + Constants.PAGE_REQUEST_PREFIX + "/index";
-
 	}
 
 	@RequestMapping(value = "/logout")
@@ -45,7 +44,7 @@ public class LoginController {
 	@RequestMapping(value = "/myspace")
 	// @RequestMapping(value = "/myspace", method = RequestMethod.GET, produces
 	// = { "application/json;charset=UTF-8" })
-	public String login() {
+	public String login(HttpServletRequest request) {
 		return "myspace";
 	}
 

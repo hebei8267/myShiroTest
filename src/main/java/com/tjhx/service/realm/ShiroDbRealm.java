@@ -31,6 +31,7 @@ public class ShiroDbRealm extends AuthorizingRealm {
 	 */
 	@Override
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
+		System.out.println("？？？？？？？？？？？？？？？？？？加载用户权限");
 		SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
 		// 获取当前登录的用户名
 		String loginName = (String) super.getAvailablePrincipal(principals);

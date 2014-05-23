@@ -37,7 +37,7 @@ public class IdListener {
 					.getRequestAttributes();
 			if (null != servletRequestAttributes) {
 				HttpServletRequest request = servletRequestAttributes.getRequest();
-				User user = (User) request.getSession().getAttribute(Constants.SESSION_USER_INFO);
+				User user = (User) request.getSession().getAttribute(Constants.CURRENT_USER_INFO);
 				loginName = user.getUuid().toString();
 			} else {
 				loginName = "sys";
