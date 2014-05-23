@@ -9,7 +9,6 @@ import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.tjhx.entity.security.User;
 import com.tjhx.globals.Constants;
@@ -17,25 +16,36 @@ import com.tjhx.globals.Constants;
 @Controller
 public class LoginController {
 
-	@RequestMapping(value = "/login", method = RequestMethod.POST, produces = { "application/json;charset=UTF-8" })
+	@RequestMapping(value = "/login")
 	public String login(User currUser, HttpSession session, HttpServletRequest request) {
-		Subject user = SecurityUtils.getSubject();
-		UsernamePasswordToken token = new UsernamePasswordToken(currUser.getLoginName(), currUser.getPassWord());
-		token.setRememberMe(true);
-		try {
-			// 调用的ShiroDbRealm的doGetAuthenticationInfo进行身份认证
-			user.login(token);
-
-			return "myspace";
-		} catch (AuthenticationException e) {
-			token.clear();
-
-			return "redirect:/" + Constants.PAGE_REQUEST_PREFIX + "/index";
+		Subject currentUser = SecurityUtils.getSubject();
+		if (!currentUser.isAuthenticated()) {
+			UsernamePasswordToken token = new UsernamePasswordToken(currUser.getLoginName(), currUser.getPassWord());
+			token.setRememberMe(true);
+			try {
+				// 调用的ShiroDbRealm的doGetAuthenticationInfo进行身份认证
+				currentUser.login(token);
+				return "redirect:/" + Constants.PAGE_REQUEST_PREFIX + "/myspace";
+			} catch (AuthenticationException e) {
+				token.clear();
+			}
 		}
+		return "redirect:/" + Constants.PAGE_REQUEST_PREFIX + "/index";
+
 	}
-	
-	@RequestMapping(value = "/myspace", method = RequestMethod.POST, produces = { "application/json;charset=UTF-8" })
-	public String login(){
+
+	@RequestMapping(value = "/logout")
+	public String logout() {
+		Subject currentUser = SecurityUtils.getSubject();
+		currentUser.logout();
+
+		return "redirect:/" + Constants.PAGE_REQUEST_PREFIX + "/index";
+	}
+
+	@RequestMapping(value = "/myspace")
+	// @RequestMapping(value = "/myspace", method = RequestMethod.GET, produces
+	// = { "application/json;charset=UTF-8" })
+	public String login() {
 		return "myspace";
 	}
 
