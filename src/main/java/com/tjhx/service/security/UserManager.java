@@ -40,8 +40,8 @@ public class UserManager {
 	 * @param loginName 登录帐号
 	 * @return 用户信息
 	 */
-	public User getByLoginName_Cache(String loginName) {
-		List<User> _userList = getAllUser_Cache();
+	public User getByLoginName_InCache(String loginName) {
+		List<User> _userList = getAllUser_InCache();
 
 		for (User user : _userList) {
 			if (user.getLoginName().equals(loginName)) {
@@ -56,7 +56,7 @@ public class UserManager {
 	 * 
 	 * @return 全量人员信息
 	 */
-	public List<User> getAllUser_Cache() {
+	public List<User> getAllUser_InCache() {
 		List<User> _userList = spyMemcachedClient.get(MemcachedObjectType.USER_LIST.getObjKey());
 
 		if (null == _userList) {
