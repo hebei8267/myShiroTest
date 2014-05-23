@@ -6,6 +6,7 @@ package com.tjhx.controller.security;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,10 +18,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class TestController {
 	@RequestMapping(value = "/Link01")
+	@RequiresPermissions(value = "/Link01")
 	public String Link01(HttpServletRequest request) {
 		System.out.println(request.getPathInfo());
-		Subject currentUser = SecurityUtils.getSubject();
-		currentUser.checkPermission(request.getPathInfo());
+		
 		return "test/Link01";
 	}
 
@@ -57,10 +58,9 @@ public class TestController {
 	}
 
 	@RequestMapping(value = "/Link0201")
+	@RequiresPermissions(value = "/Link0201")
 	public String Link0201(HttpServletRequest request) {
 		System.out.println(request.getPathInfo());
-		Subject currentUser = SecurityUtils.getSubject();
-		currentUser.checkPermission(request.getPathInfo());
 		return "test/Link0201";
 	}
 }
